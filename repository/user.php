@@ -1,9 +1,10 @@
 <?php
-include("connect.php");
-class User {
+include("conexion.php");
+class usuario {
     public $id = "";
     public $email = "";
     public $password = "";
+    public $nombre = "";
     
     function setId($id) {
         $this->id = $id;
@@ -14,12 +15,16 @@ class User {
     function setPassword($password) {
         $this->password = $password;
     }
+    function setNombre($nombre) {
+        $this->nombre = $nombre;
+    }
 
     function save() {
         $db = new DataBase();
         $conn = $db->connect();
+        
         if ($conn) {
-            $sql = "INSERT INTO user (id, email, password) VALUES ('" . $this->id . "', '" . $this->email . "', '" . $this->password . "')";
+            $sql = "INSERT INTO usuario (id, email, password, nombre) VALUES (NULL, '" . $this->email . "', PASSWORD('" . $this->password . "'), '" . $this->nombre . "')";
             if ($conn->query($sql) === TRUE) {
                 return array(TRUE, $this->toArray());
             } else {
