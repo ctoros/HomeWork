@@ -107,13 +107,13 @@ class usuario {
                 }
             }
         }
-          public function updateByID($id,$email,$pass){
+          public function updateByID(){
         $db= new Database();
         $conn = $db->connect();
         if ($conn) {
-            $query="UPDATE user SET email='".$email."',"
-                    ."SET codigo='".$pass."',"
-                    . "WHERE id=$id";
+            $query="UPDATE user SET email='".$this->email."',"
+                    ."SET codigo= PASSWORD('".$this->password."'), SET nombre = '".$this->nombre."',"
+                    . "WHERE id=$this->id";
             echo $query;
             if ($conn->query($query)===true) {
                 return array(TRUE, $this->toArray());
