@@ -257,11 +257,12 @@
           </div>
 
             <!-- Modal -->
-            <div class="modal fade" id="myModal" role="dialog">
-              <div class="modal-dialog">
+            <?php include('modalTarea.html') ?>
+            <!-- <div class="modal fade" id="myModal" role="dialog">
+              <div class="modal-dialog"> -->
               
                 <!-- Modal content-->
-                <div class="modal-content">
+                <!-- <div class="modal-content">
                   <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title">Agregar Tarea</h4>
@@ -279,9 +280,7 @@
                 </div>
                 
               </div>
-            </div>
-
-
+            </div> -->
 
           <div class="row" id="bodyTareas">
 
