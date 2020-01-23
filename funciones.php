@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 include 'conexion.php';
 
@@ -18,12 +19,18 @@ if ($result = mysqli_query($con, $sql)) {
    
       while ($row = mysqli_fetch_row($result)) {
 
-                  header('Location: index2.html');
+        
+          // Set session variables
+          $_SESSION["nombre"] = "Gonzalo";
+          $_SESSION["email"] = "gonzalo@hotmail.com";
+     
+
+                  header('Location: profile.php');
             }
     }
 
       echo "Contraseña o Email Incorrecto";
-      echo "<br><a href='login.html'>Volver a Intentarlo</a>";
+      echo "<br><a href='login.php'>Volver a Intentarlo</a>";
 
  
     mysqli_close($con); 
