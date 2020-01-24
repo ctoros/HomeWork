@@ -1,6 +1,6 @@
 <?php
 session_start(); 
- 
+
 ?>
 
 <!DOCTYPE html>
@@ -366,7 +366,7 @@ session_start();
               <div class="col-md-12">
                 <div class="row">
                   <div class="col-md-6">
-                    <form role="form">
+                    <form role="form"  id="actualizarUsuario" method="post" >
                       <div class="form-group">
                          
                         <label for="exampleInputEmail1">
@@ -382,13 +382,20 @@ session_start();
                             <input type="text" class="form-control" id="emailUsuario" placeholder="Email" value="<?php echo $_SESSION['email'] ?>">
                           </div>
                           <div class="form-group">
+
+                          <label for="exampleInputEmail1">
+                              Password: 
+                            </label>
+                            <input type="password" class="form-control" id="passwordUsuario" placeholder="password" value="">
+                          </div>
+                          <div class="form-group">
                       </div>
-                      <button type="submit" class="btn btn-primary">
-                        Actualizar Datos
-                      </button>
+                      <input type="submit"  class="btn btn-primary " value="Actualizar Datos">
                     </form>
                   </div>
+                  <input type="text" id="idUsuario" value="<?php echo $_SESSION['id'] ?>" hidden>
                   <div class="col-md-6">
+
                     <!-- <form role="form">
                       <div class="form-group">
                          
@@ -475,6 +482,39 @@ session_start();
   <!-- Custom scripts for all pages-->
   <!-- <script src="js/bootstrap.min.js"></script>
   <script src="js/scripts.js"></script> -->
+  <script type="text/javascript">
+    $(document).ready(function () {
+
+        $("#registerUser").submit(function (event) {
+            var body = {
+                'id' : $("#id").val(),
+                'email': $("#emailUsuario").val(),
+                'nombre': $("#nombreUsuario").val(),
+                'password': $("#passwordUsuario").val()
+            } 
+            console.log(body);
+            $.post("service/insert.php", body, function (a, b, c) {
+                debugger;
+                swal(
+                        'Usuario Actualizado!',
+                        'Datos Actualizados',
+                        'success'
+
+                        )
+            }).fail(function (resp, error, responseType) {
+                swal({
+                    type: 'error',
+                    title: responseType,
+                    text: resp['responseText'],
+                })
+            });
+            event.preventDefault();
+        })
+    })
+</script>
+
+
+
 </body>
 
 </html>

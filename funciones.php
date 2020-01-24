@@ -18,13 +18,11 @@ $sql = "SELECT * FROM usuario WHERE email = '$email' AND password = PASSWORD('$p
 if ($result = mysqli_query($con, $sql)) {
    
       while ($row = mysqli_fetch_row($result)) {
-
-        
           // Set session variables
-          $_SESSION["nombre"] = $row['nombre'];
-          $_SESSION["email"] = $row['email'];
+          $_SESSION["id"] = "8";
+          $_SESSION["nombre"] = "Gonzalo";
+          $_SESSION["email"] = "gonzalo@hotmail.com";
      
-
                   header('Location: profile.php');
             }
     }
