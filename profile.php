@@ -46,7 +46,7 @@ session_start();
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item active">
-        <a class="nav-link" href="tareas.html">
+        <a class="nav-link" href="tareas.php">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Tareas</span></a>
       </li>
@@ -69,7 +69,7 @@ session_start();
       <hr class="sidebar-divider"> <!--Linea divisoria -->
 
       <li class="nav-item active">
-        <a class="nav-link" href="profile.html">
+        <a class="nav-link" href="profile.php">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Profile</span></a>
       </li>
@@ -327,7 +327,7 @@ session_start();
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small"></span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['nombre'];?></span>
                 <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
               </a>
               <!-- Dropdown - User Information -->
@@ -372,14 +372,14 @@ session_start();
                         <label for="exampleInputEmail1">
                           Nombre Usuario: 
                         </label>
-                        <input type="text" class="form-control" id="nombreUsuario" placeholder="Usuario" value="">
+                        <input type="text" class="form-control" id="nombreUsuario" placeholder="Usuario" value="<?php echo $_SESSION['nombre'] ?>">
                       </div>
                       <div class="form-group">
                          
                           <label for="exampleInputEmail1">
                               Email Usuario: 
                             </label>
-                            <input type="text" class="form-control" id="emailUsuario" placeholder="Email" value="">
+                            <input type="text" class="form-control" id="emailUsuario" placeholder="Email" value="<?php echo $_SESSION['email'] ?>">
                           </div>
                           <div class="form-group">
                       </div>

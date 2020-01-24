@@ -21,8 +21,8 @@ if ($result = mysqli_query($con, $sql)) {
 
         
           // Set session variables
-          $_SESSION["nombre"] = "Gonzalo";
-          $_SESSION["email"] = "gonzalo@hotmail.com";
+          $_SESSION["nombre"] = $row['nombre'];
+          $_SESSION["email"] = $row['email'];
      
 
                   header('Location: profile.php');
