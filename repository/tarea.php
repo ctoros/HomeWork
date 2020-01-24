@@ -1,23 +1,24 @@
 <?php
 include("conexion.php");
-class usuario {
+class tareas {
     public $id = "";
-    public $email = "";
-    public $password = "";
-    public $nombre = "";
+    public $titulo = "";
+    public $descripcion = "";
+    public $idUsuario = "";
     
     function setId($id) {
         $this->id = $id;
     }
-    function setEmail($email) {
-        $this->email = $email;
+    function setTitulo($titulo){
+        $this->titulo =$titulo;
     }
-    function setPassword($password) {
-        $this->password = $password;
+    function setDescripcion($descripcion){
+        $this->descripcion =$descripcion;
     }
-    function setNombre($nombre) {
-        $this->nombre = $nombre;
+    function setIdUsuario($idUsuario){
+        $this->idUsuario =$idUsuario;
     }
+
 
     function save() {
         $db = new DataBase();
@@ -32,7 +33,6 @@ class usuario {
             }
         }
     }
-
     function listUsers() {
         $users = [];
         $db = new DataBase();
@@ -112,8 +112,9 @@ class usuario {
         $db= new Database();
         $conn = $db->connect();
         if ($conn) {
-                    
-            $query="UPDATE `usuario` SET `email`='".$this->email."',`password`=PASSWORD('".$this->password."'),`nombre`='".$this->nombre."' WHERE id=".$this->id."";
+            $query="UPDATE user SET email='".$this->email."',"
+                    ."SET codigo= PASSWORD('".$this->password."'), SET nombre = '".$this->nombre."',"
+                    . "WHERE id=$this->id";
             echo $query;
             if ($conn->query($query)===true) {
                 return array(TRUE, $this->toArray());

@@ -22,6 +22,7 @@ session_start();
 
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
+  <script src="https://unpkg.com/sweetalert2@7.19.3/dist/sweetalert2.all.js"></script>
 
 </head>
 
@@ -391,9 +392,10 @@ session_start();
                           <div class="form-group">
                       </div>
                       <input type="submit"  class="btn btn-primary " value="Actualizar Datos">
+                      <input type="text" id="idUsuario" value="<?php echo $_SESSION['id'] ?>" hidden>
                     </form>
                   </div>
-                  <input type="text" id="idUsuario" value="<?php echo $_SESSION['id'] ?>" hidden>
+                  
                   <div class="col-md-6">
 
                     <!-- <form role="form">
@@ -485,15 +487,15 @@ session_start();
   <script type="text/javascript">
     $(document).ready(function () {
 
-        $("#registerUser").submit(function (event) {
+        $("#actualizarUsuario").submit(function (event) {
             var body = {
-                'id' : $("#id").val(),
+                'id' : $("#idUsuario").val(),
                 'email': $("#emailUsuario").val(),
                 'nombre': $("#nombreUsuario").val(),
                 'password': $("#passwordUsuario").val()
             } 
             console.log(body);
-            $.post("service/insert.php", body, function (a, b, c) {
+            $.post("service/updateUser.php", body, function (a, b, c) {
                 debugger;
                 swal(
                         'Usuario Actualizado!',

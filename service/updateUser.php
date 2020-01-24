@@ -5,6 +5,7 @@ include("../repository/user.php");
 $method = $_SERVER['REQUEST_METHOD'];
 if ($method == "POST") {
     $user = new usuario();
+    $user->setId($_POST["id"]);
     $user->setEmail($_POST["email"]);
     $user->setNombre($_POST["nombre"]);
     $user->setPassword($_POST["password"]);
