@@ -96,11 +96,25 @@ class tarea {
             }
         }
     }
-        public function deleteById($nId){
+        public function deleteById(){
         $db= new Database();
         $conn = $db->connect();
         if ($conn) {
-            $query = "Delete user where id=$this->$nId";
+            $query = "Delete user where id=$this->titulo";
+            echo $query;
+            if ($conn->query($query)===true) {
+                return array(TRUE, $this->toArray());
+            }else{
+                return array(FALSE, $conn->error);
+                }
+            }
+        }
+
+                public function deleteByTitle(){
+        $db= new Database();
+        $conn = $db->connect();
+        if ($conn) {
+            $query = "Delete from tareas where id='".$this->titulo."'";
             echo $query;
             if ($conn->query($query)===true) {
                 return array(TRUE, $this->toArray());

@@ -19,9 +19,9 @@ if ($result = mysqli_query($con, $sql)) {
    
       while ($row = mysqli_fetch_row($result)) {
           // Set session variables
-          $_SESSION["id"] = "8";
-          $_SESSION["nombre"] = "Gonzalo";
-          $_SESSION["email"] = "gonzalo@hotmail.com";
+          $_SESSION["id"] = $row[0];
+          $_SESSION["nombre"] = $row[3];
+          $_SESSION["email"] = $row[1];
      
                   header('Location: profile.php');
             }
