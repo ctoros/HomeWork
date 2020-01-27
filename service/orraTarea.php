@@ -5,7 +5,7 @@ include("../repository/tarea.php");
 $method = $_SERVER['REQUEST_METHOD'];
 if ($method == "POST") {
     $work = new Tarea();
-    $work->setTitulo($_POST["titulo"]);
+    $work->setId($_POST["titulo"]);
 
     $resp = $work->deleteByTitle();
     if ($resp[0]) {

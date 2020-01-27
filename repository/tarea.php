@@ -110,11 +110,12 @@ class tarea {
             }
         }
 
-                public function deleteByTitle(){
+        public function deleteByTitle(){
         $db= new Database();
         $conn = $db->connect();
         if ($conn) {
-            $query = "Delete from tareas where id='".$this->titulo."'";
+            $query = "Delete from tareas where id=".$this->id;
+
             echo $query;
             if ($conn->query($query)===true) {
                 return array(TRUE, $this->toArray());
