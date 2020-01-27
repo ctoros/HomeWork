@@ -17,10 +17,12 @@
 
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
+  <script src="https://unpkg.com/sweetalert2@7.19.3/dist/sweetalert2.all.js"></script>
 
 </head>
 
 <body id="page-top">
+      <form id="insertTarea" method="post">
 
   <!-- Page Wrapper -->
   <div id="wrapper">
@@ -379,7 +381,7 @@
       </div>
     </div>
   </div>
-
+      </form>
   <!-- Bootstrap core JavaScript-->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -390,6 +392,35 @@
   <!-- Custom scripts for all pages-->
   <script src="js/sb-admin-2.min.js"></script>
 
+
+   <script type="text/javascript">
+    $(document).ready(function () {
+
+        $("#insertTarea").submit(function (event) {
+            var body = {
+                'email': $("#titulo").val(),
+                'nombre': $("#descripcion").val()
+            } 
+            console.log(body);
+            $.post("service/insertTarea.php", body, function (a, b, c) {
+                debugger;
+                swal(
+                        'Tarea Registrado!',
+                        'Tu tarea a sido creada',
+                        'success'
+
+                        )
+            }).fail(function (resp, error, responseType) {
+                swal({
+                    type: 'error',
+                    title: responseType,
+                    text: resp['responseText'],
+                })
+            });
+            event.preventDefault();
+        })
+    })
+</script>
 </body>
 
 </html>

@@ -21,6 +21,7 @@ $_SESSION['test'] = "test";
 
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
+  <script src="https://unpkg.com/sweetalert2@7.19.3/dist/sweetalert2.all.js"></script>
 
 </head>
 
@@ -288,6 +289,7 @@ $_SESSION['test'] = "test";
 
           <div class="row" id="bodyTareas">
 
+
               <div class="col-lg-4">
                   <!-- Dropdown Card Example -->
                   <div class="card shadow mb-4">
@@ -313,7 +315,6 @@ $_SESSION['test'] = "test";
                     </div>
                   </div>
                 </div>
-
 
 
           </div>
@@ -386,5 +387,35 @@ $_SESSION['test'] = "test";
 
   
   </script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+            var body = {
+                'email': $("#titulo").val(),
+                'nombre': $("#descripcion").val()
+            } 
+            console.log(body);
+            $a = $.get("service/listWorks.php", body, function (a, b, c) {
+              $listado =  JSON.parse($a['responseText'])
+
+             console.log(  JSON.parse($a['responseText']));
+             var imprimir= "";
+            for (i in $listado) {
+              imprimir +=  '<div class="col-lg-4"><!-- Dropdown Card Example --><div class="card shadow mb-4"><!-- Card Header - Dropdown -->                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between"><h6 class="m-0 font-weight-bold text-primary">'+ $listado[i].titulo+ '</h6><div class="dropdown no-arrow"><a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i></a><div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink"><div class="dropdown-header">Acciones:</div><a class="dropdown-item" href="#">Completada</a><a class="dropdown-item" href="#">Asignar</a><div class="dropdown-divider"></div><a class="dropdown-item" href="#">Borrar</a></div></div></div><!-- Card Body --><div class="card-body">'+$listado[i].descripcion+'</div></div></div>';
+                console.log($listado[i].titulo);
+                 console.log($listado[i].descripcion);
+            }
+                        document.getElementById("bodyTareas").innerHTML = imprimir;
+
+//$titulo= "Hola";
+//$descripcion= "Hola2";
+//$listaTodo = '<div class="col-lg-4"><!-- Dropdown Card Example --><div class="card shadow mb-4"><!-- Card Header - Dropdown -->                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between"><h6 class="m-0 font-weight-bold text-primary">'+ $listado[i].titulo+ '</h6><div class="dropdown no-arrow"><a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i></a><div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink"><div class="dropdown-header">Acciones:</div><a class="dropdown-item" href="#">Completada</a><a class="dropdown-item" href="#">Asignar</a><div class="dropdown-divider"></div><a class="dropdown-item" href="#">Borrar</a></div></div></div><!-- Card Body --><div class="card-body">'+$listado[i].descripcion+'</div></div></div>';
+//document.getElementById("bodyTareas").innerHTML = x;
+                              debugger;
+ 
+            }).fail(function (resp, error, responseType) {
+      
+            });
+    })
+</script>
 
 </html>

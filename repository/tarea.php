@@ -1,6 +1,6 @@
 <?php
 include("conexion.php");
-class tareas {
+class tarea {
     public $id = "";
     public $titulo = "";
     public $descripcion = "";
@@ -25,7 +25,7 @@ class tareas {
         $conn = $db->connect();
         
         if ($conn) {
-            $sql = "INSERT INTO usuario (id, email, password, nombre) VALUES (NULL, '" . $this->email . "', PASSWORD('" . $this->password . "'), '" . $this->nombre . "')";
+            $sql = "INSERT INTO tareas ( titulo, descripcion) VALUES (  '" . $this->titulo . "', '" . $this->descripcion . "')";
             if ($conn->query($sql) === TRUE) {
                 return array(TRUE, $this->toArray());
             } else {
@@ -33,22 +33,23 @@ class tareas {
             }
         }
     }
-    function listUsers() {
-        $users = [];
+    function listTareas() {
+        $works = [];
         $db = new DataBase();
         $conn = $db->connect();
         if ($conn) {
-            $sql = "SELECT * FROM user";
+            $sql = "SELECT * FROM tareas";
             if ($conn->query($sql)) {
                 $resp = $conn->query($sql);
                 while ($fila = mysqli_fetch_assoc($resp)) {
-                    $usr = new User();
-                    $usr->setId($fila['id']);
-                    $usr->setEmail($fila['email']);
-                    $usr->setPassword($fila['password']);
-                    array_push($users, $usr);
+                    $work = new Tarea();
+                    $work->setId($fila['id']);
+                    $work->setTitulo($fila['titulo']);
+                    $work->setDescripcion($fila['descripcion']);
+                    $work->setIdUsuario($fila['idUsuario']);
+                    array_push($works, $work);
                 }
-                return $users;
+                return $works;
             }
             echo "entra y no trae";
         }
@@ -126,8 +127,9 @@ class tareas {
     function toArray() {
         $arr = array(
             'id' => $this->id,
-            'email' => $this->email,
-            'password' => $this->password,
+            'titulo' => $this->titulo,
+            'descripcion' => $this->descripcion,
+            'idUasuario' => $this->idUsuario,
         );
         return json_encode($arr);
     }

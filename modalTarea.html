@@ -7,17 +7,46 @@
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4 class="modal-title">Agregar Tarea</h4>
       </div>
-      <div class="modal-body">
+      <form id="insertTarea">
+              <div class="modal-body">
         <label>Nombre :</label>
-        <div><input type="text" name="nombre" value="Nombre Tarea"></div><br>
+        <div><input type="text" name="nombre" id="titulo" value="Nombre Tarea"></div><br>
         <label>Descripción :</label>
-        <div><textarea rows="4" cols="50"></textarea></div><br>
+        <div><textarea rows="4" cols="50" id="descripcion"></textarea></div><br>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-success" data-dismiss="modal">Crear</button>
+        <button type="button" class="btn btn-success"  onclick="saveTarea()" data-dismiss="modal">Crear</button>
       </div>
+      </form>
+
     </div>
     
   </div>
 </div>
+
+
+   <script type="text/javascript">
+    function saveTarea() {
+            var body = {
+                'titulo': $("#titulo").val(),
+                'descripcion': $("#descripcion").val()
+            } 
+            console.log(body);
+             $.post("service/insertTarea.php", body, function (a, b, c) {
+                debugger;
+                swal(
+                        'Tarea Registrado!',
+                        'Tu tarea a sido creada',
+                        'success'
+
+                        )
+            }).fail(function (resp, error, responseType) {
+                swal({
+                    type: 'error',
+                    title: responseType,
+                    text: resp['responseText'],
+                })
+            });
+    }
+</script>
